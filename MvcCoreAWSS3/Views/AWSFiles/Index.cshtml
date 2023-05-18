@@ -1,0 +1,31 @@
+﻿@model List<string>
+
+<h1 style="color:blue">
+    AWS Service Storage S3
+</h1>
+
+<a asp-controller="AWSFiles" asp-action="UploadFile"
+class="btn btn-check">
+    Upload File
+</a>
+
+<hr/>
+
+
+<ul class="list-group">
+    @foreach(string fileName in Model)
+    {
+        <li class="list-group-item">
+            @fileName
+            <img src="@ViewData["BUCKETURL"]@fileName"
+            style="width:150px; height: 150px" />
+            <a asp-controller="AWSFiles" asp-action="FileAWS"
+            class="btn btn-warning"
+            asp-route-filename="@fileName">Ver fichero (Private)</a>
+            <a asp-controller="AWSFiles" asp-action="DeleteFile"
+               class="btn btn-dark"
+           asp-route-filename="@fileName">Delete File</a>
+        </li>
+    }
+
+</ul>
